@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="dish-detail">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `dish-detail`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class DishDetail extends Polymer.Element {
+      static get is() { return 'dish-detail'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'dish-detail'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(DishDetail.is, DishDetail);
+  </script>
+</dom-module>
