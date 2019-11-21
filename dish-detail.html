@@ -79,10 +79,12 @@
           <p>$[[taco.price]].00 MXN</p>
           <p class="taco-light">[[taco.description]]</p>
         </div>
-        <div class="card-actions">
-          <paper-button class="info">Modificar</paper-button>
-          <paper-button class="error">Eliminar</paper-button>
-        </div>
+        <template is="dom-if" if="[[__isEditable]]">
+          <div class="card-actions">
+            <paper-button class="info">Modificar</paper-button>
+            <paper-button class="error">Eliminar</paper-button>
+          </div>
+        </template>
       </paper-card>
     </template>
   </template>
@@ -112,6 +114,10 @@
               description: 'Every day is taco ipsum tuesday. Does guac cost extra? If you were a taco, would you eat yourself? Give me tacos, or give me death. These tacos are lit 🔥. It’s raining tacos, from out of the sky, tacos, don’t even ask why. Give me tacos, or give me death. Pico de gallo, on the side please. CARNITAS!! Fish tacos: lettuce or cabbage, pico de gallo, avocado and a sour cream or citrus/mayonnaise sauce, all placed on top of a corn or flour tortilla. I think I’ve overdosed on tacos. Add in a few el Pastor with guac and diced onions.',
               price: 40
             }]
+          },
+          __isEditable: {
+            type: Boolean,
+            value: true
           }
         };
       }
