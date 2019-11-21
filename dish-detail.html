@@ -1,4 +1,9 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 
 <dom-module id="dish-detail">
   <template>
@@ -6,8 +11,70 @@
       :host {
         display: block;
       }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      paper-card {
+        max-width: 500px;
+        border-color: gray;
+        border-style: solid;
+        margin: 2em;
+        padding: 1em;
+        border-radius: 5px;
+      }
+
+      .taco-header {
+        color: var(--paper-grey-600);
+      }
+
+      .taco-light {
+        color: var(--paper-grey-600);
+      }
+
+      .taco-location {
+        float: right;
+        font-size: 15px;
+        vertical-align: middle;
+      }
+
+      .taco-reserve {
+        color: var(--google-blue-500);
+      }
+
+      iron-icon.star {
+        --iron-icon-width: 16px;
+        --iron-icon-height: 16px;
+        color: var(--paper-amber-500);
+      }
+
+      iron-icon.star:last-of-type {
+        color: var(--paper-grey-500);
+      }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+
+    <template is="dom-repeat" items="[[tacos]]" as="taco">
+      <paper-card image="[[taco.image]]">
+        <div class="card-content">
+          <div class="taco-header">[[taco.name]]
+            <div class="taco-location taco-light">
+              <iron-icon icon="communication:location-on"></iron-icon>
+              <span>[[taco.energyValue]] cal</span>
+            </div>
+          </div>
+          <rating-component rate="[[taco.rate]]"></rating-component>
+          <p>$[[taco.price]].00 MXN</p>
+          <p class="taco-light">[[taco.description]]</p>
+        </div>
+        <div class="card-actions">
+          <paper-button>Share</paper-button>
+          <paper-button>Explore!</paper-button>
+        </div>
+      </paper-card>
+    </template>
   </template>
 
   <script>
@@ -20,12 +87,21 @@
      * @demo demo/index.html
      */
     class DishDetail extends Polymer.Element {
-      static get is() { return 'dish-detail'; }
+      static get is() {
+        return 'dish-detail';
+      }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'dish-detail'
+          tacos: {
+            type: Array,
+            value: [{
+              id: 0,
+              image: 'https://images.pexels.com/photos/2087748/pexels-photo-2087748.jpeg?cs=srgb&dl=blur-close-up-cuisine-2087748.jpg&fm=jpg',
+              name: 'Taco',
+              energyValue: 586,
+              description: 'Every day is taco ipsum tuesday. Does guac cost extra? If you were a taco, would you eat yourself? Give me tacos, or give me death. These tacos are lit 🔥. It’s raining tacos, from out of the sky, tacos, don’t even ask why. Give me tacos, or give me death. Pico de gallo, on the side please. CARNITAS!! Fish tacos: lettuce or cabbage, pico de gallo, avocado and a sour cream or citrus/mayonnaise sauce, all placed on top of a corn or flour tortilla. I think I’ve overdosed on tacos. Add in a few el Pastor with guac and diced onions.',
+              price: 40
+            }]
           }
         };
       }
