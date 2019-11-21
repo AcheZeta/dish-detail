@@ -54,6 +54,16 @@
       iron-icon.star:last-of-type {
         color: var(--paper-grey-500);
       }
+
+      paper-button.info {
+        background-color: #3367d6;
+        color: white;
+      }
+
+      paper-button.error {
+        background-color: #ff0000;
+        color: white;
+      }
     </style>
 
     <template is="dom-repeat" items="[[tacos]]" as="taco">
@@ -70,8 +80,8 @@
           <p class="taco-light">[[taco.description]]</p>
         </div>
         <div class="card-actions">
-          <paper-button>Share</paper-button>
-          <paper-button>Explore!</paper-button>
+          <paper-button class="info">Modificar</paper-button>
+          <paper-button class="error">Eliminar</paper-button>
         </div>
       </paper-card>
     </template>
